@@ -14,3 +14,5 @@ https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients
 Theos Evgeniou, Spyros Zoumpoulis: Classification for Credit Card Default
 http://inseaddataanalytics.github.io/INSEADAnalytics/CourseSessions/ClassificationProcessCreditCardDefault.html#step_4:_classification_and_interpretation
 
+Vladimir G. Drugov: Default Payments of Credit Card Clients in Taiwan from 2005
+https://rstudio-pubs-static.s3.amazonaws.com/281390_8a4ea1f1d23043479814ec4a38dbbfd9.html#social-status-predictors-sex-education-marriage
