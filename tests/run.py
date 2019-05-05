@@ -5,9 +5,10 @@ import unittest
 import os
 
 class Testing(unittest.TestCase):
-    def test_dummy(self):
-        """Dummy test"""
-        self.assertEqual(1, 1)
+    def test_csv(self):
+        """Check if CSV is valid"""
+        df = pd.read_csv("data/data.csv")
+        self.assertEqual(df.shape, (30000, 25))
 
 if __name__ == '__main__':
     unittest.main()
