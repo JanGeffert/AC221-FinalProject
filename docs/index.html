@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Creative - Start Bootstrap Theme</title>
+  <title>AP-COMP 221: Critical Thinking in Data Science</title>
 
   <!-- Font Awesome Icons -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,23 +30,26 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">AP-COMP 221: Critical Thinking in Data Science</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            <a class="nav-link js-scroll-trigger" href="#about">Introduction</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+            <a class="nav-link js-scroll-trigger" href="#thedata">Data</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+            <a class="nav-link js-scroll-trigger" href="#bias">Bias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            <a class="nav-link js-scroll-trigger" href="#wrangling">Wrangling</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#modeling">Modeling</a>
           </li>
         </ul>
       </div>
@@ -58,12 +61,12 @@
     <div class="container h-100">
       <div class="row h-100 align-items-center justify-content-center text-center">
         <div class="col-lg-10 align-self-end">
-          <h1 class="text-uppercase text-white font-weight-bold">Your Favorite Source of Free Bootstrap Themes</h1>
+          <h1 class="text-uppercase text-white font-weight-bold">Disparate Impacts and Senstive Attributes in Automated Credit Scoring</h1>
           <hr class="divider my-4">
         </div>
         <div class="col-lg-8 align-self-baseline">
-          <p class="text-white-75 font-weight-light mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+          <p class="text-white-75 font-weight-light mb-5">Assessing algorithmic bias of a popular credit default dataset.</p>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Start Reading</a>
         </div>
       </div>
     </div>
@@ -73,176 +76,431 @@
   <section class="page-section bg-primary" id="about">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <h2 class="text-white mt-0">We've got what you need!</h2>
+        <h2 class="text-white mt-0">Introduction & Motivation</h2>
+        <div class="col-lg-8 text-align-left">
           <hr class="divider light my-4">
-          <p class="text-white-50 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+          <p class="text-white mb-4" style="line-height:2.3em;">
+            For our final project, we were interested in examining computational biases in socio-technical decision-making systems.
+            Particularly, in the context of intense discussions around the use of algorithms in credit scoring and the possible
+            repercussions of their bias, we were interested in investigating how sensitive attributes might disproportionately
+            impact vulnerable groups in receiving loans and credit lines.
+            In the US, variables such as age, race, gender, and marital status are not
+            included as predictors for credit score calculations [1], yet there are differences
+            between subpopulations for these attributes in terms of loan refusals,
+            credit card limit, etc. For example, it was found that women have lower credit
+            limits than men (probably due to the gap in annual income), and spend a higher
+            percentage of their credit limit, which in turn negatively impacts their credit score [2].
+            This phenomenon could easily lead to a feedback loop, in which having lower credit scores
+            leads to lower limits, leading to higher spending percentage-wise, leading to lower credit score, and so on.
+
+	In order to investigate possible biases, we selected a credit scoring dataset originally published by Yeh et al. in 2009 [3]. We took into account several factors in our dataset choice; first of all, the target variables included sensitive attributes we wanted to explore (gender, marital status, age, education). Secondly, the dataset is a very popular one, with almost 350 thousand web hits on UCI machine repository, 182 notebook that users have shared and 293 upvotes on Kaggle, and 266 citations of the initial paper. Thus, we would have a point of comparison for our own models. Nevertheless, only little of the published research critically engages with the potential for discriminatory predictions, with gender and marital status feature being mentioned as strong predictors in several of the proposed models [3]. We consider our biggest contribution to be then in this space.
+          </p>
+        </div>
+        <div class="col-lg-8 text-center">
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="#thedata">Learn about the data!</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Services Section -->
-  <section class="page-section" id="services">
+  <section class="page-section" id="thedata">
     <div class="container">
-      <h2 class="text-center mt-0">At Your Service</h2>
-      <hr class="divider my-4">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-gem text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Sturdy Themes</h3>
-            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Up to Date</h3>
-            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-globe text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Ready to Publish</h3>
-            <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-heart text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Made with Love</h3>
-            <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
-          </div>
+      <div class="row justify-content-center">
+        <h2 class="text-black mt-0">Understanding the Dataset</h2>
+        <div class="col-lg-8 text-align-left">
+          <hr class="divider dark my-4">
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
+            The dataset has a total of <strong>30,000 observations</strong> describing credit card owners in Taiwan. The explanatory variables include sensitive attributes (gender, age, marital status, education), as well as their payment behavior for the previous six months (repayment status, amount of bill statement, amount of previous payment). The target variable is a binary one, denoting whether the credit card owner defaulted on their loan or not. Within this sample, the rate of default payment is 22.12%.
+
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Credit limit</td>
+                  <td>amount of credit offered to the credit card owner.</td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td>gender of the credit card holder; categories: male (1) or female (2).</td>
+                </tr>
+                <tr>
+                  <td>Education</td>
+                  <td>educational attainment of the credit card holder; categories: graduate school (1), university (2), high school (3), others (0, 4, 5, 6).</td>
+                </tr>
+                <tr>
+                  <td>Marital status</td>
+                  <td>marital status of the credit card holder; categories: married (1), single (2), divorced (3), others (0).</td>
+                </tr>
+                <tr>
+                  <td>Age</td>
+                  <td>age of the credit card holder.</td>
+                </tr>
+                <tr>
+                  <td>History of payment</td>
+                  <td>payment records for the previous 6 months, from April to September; categories: no consumption (-2), paid in full (-1), use of revolving credit (0), payment delay for one month (1), payment delay for 2 months (2), etc.</td>
+                </tr>
+                <tr>
+                  <td>Amount of bill statement</td>
+                  <td>amount of bill statements for the previous six months.</td>
+                </tr>
+                <tr>
+                  <td>Amount of previous payment</td>
+                  <td>amount of payment for bills in the previous six months.</td>
+                </tr>
+                <tr>
+                  <td>Default</td>
+                  <td><strong>1</strong> if the person defaulted on their payment, <strong>0</strong> otherwise.</td>
+                </tr>
+              </tbody>
+            </table>
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Portfolio Section -->
-  <section id="portfolio">
-    <div class="container-fluid p-0">
-      <div class="row no-gutters">
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
+    <!-- Services Section -->
+  <section class="page-section" id="bias">
+    <div class="container">
+      <div class="row justify-content-center">
+        <h2 class="text-black mt-0">Potential Sources of Bias</h2>
+        <div class="col-lg-8">
+          <hr class="divider dark my-4">
+          <p>A common observation in algorithmic fairness is that the data that enables ML-based algorithmic decision-making systems
+             already encodes various societal inquities. Therefore it is worth to look who is missing in these datasets. To this end,
+             we compared the distributions of several demographic attributes in the dataset to that of Taiwan overall.
+             <br>
+             <br>
+             <br>
+          </p>
         </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
+
+
+        <div class="col-lg-5">
+          <h5 class="text-align-center">Age distribution of Taiwanese population</h5>
+          <img class="img-fluid" src="img/population_age.png" alt="">
         </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
+        <div class="col-lg-5">
+          <h5 class="text-align-center">Age distribution of the credit data</h5>
+          <img class="img-fluid" src="img/credit_age.png" alt="">
         </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
+        <div class="col-lg-8">
+          <p>
+            <br>
+            <br>
+            The people who are found in the credit card data are adults and tend
+            to be younger than the general Taiwanese population overall. Especially
+            elderly citizens seem to be missing. When faced with a new, unseen credit-card holder
+            who is 70 or older, an automated decision-making system may therefore have to extrapolate
+            rather than interpolate from seen data.
+            <br>
+            <br>
+            <br>
+          </p>
         </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
+
+        <div class="col-lg-5">
+          <h5 class="text-align-center">Gender presentation of Taiwanese population</h5>
+          <img class="img-fluid" src="img/population_gender.png" alt="">
         </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
-            <div class="portfolio-box-caption p-3">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
+        <div class="col-lg-5">
+          <h5 class="text-align-center">Gender presentation of the credit data</h5>
+          <img class="img-fluid" src="img/credit_gender.png" alt="">
+        </div>
+        <div class="col-lg-8">
+          <p>
+            <br>
+            <br>
+            Women are overrepresented in the dataset. Further, the "M,F" ontology reinscribes problematic binarized notions of gender.
+            <br>
+            <br>
+            <br>
+          </p>
+        </div>
+
+
+        <div class="col-lg-5">
+          <h5 class="text-align-center">Marital Status of Taiwanese population</h5>
+          <img class="img-fluid" src="img/population_marital.png" alt="">
+        </div>
+        <div class="col-lg-5">
+          <h5 class="text-align-center">Marital Status of the credit data</h5>
+          <img class="img-fluid" src="img/credit_marital.png" alt="">
+        </div>
+        <div class="col-lg-8">
+          <p>
+            <br>
+            <br>
+            While the majority of the Taiwanese population is married, the
+            majority of the people represented in the credit dataset are single.
+            The data further includes as disproportionately small number of
+            divorced individuals. Widowed citizens are not represented in the
+            credit data ontology.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Call to Action Section -->
-  <section class="page-section bg-dark text-white">
-    <div class="container text-center">
-      <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-      <a class="btn btn-light btn-xl" href="https://startbootstrap.com/themes/creative/">Download Now!</a>
+  <section class="page-section bg-dark text-white" id="wrangling">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-align-left">
+          <h2 class="text-black mt-0">Data Wrangling</h2>
+          <p class="text-white mb-4" style="line-height:2.3em;">
+            Due to lack of clarity in what the “other” values mean for the education (categories 0, 4, 5, 6) and marital status (category 0) attributes, we decided to drop these rows, giving us a final count of 299480 observations (99.82% of original data). Furthermore, we decided to change the history of payment for the purposes of model interpretability. After investigating options with both a categorical variable for the no delay in payment subgroups and a continuous variable to measure the delay payments, we concluded that in terms of both model interpretability and performance, it was best to lump the no-delay categories into only one (0). Thus, our new history of payment attribute could be described as such:
+
+            History of payment: payment records for the previous 6 months, from April to September; categories: no delay (0), payment delay for one month (1), payment delay for 2 months (2), etc.
+
+            Finally, we used one hot encoding on our categorical variables: gender, education, and marriage.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="page-section" id="contact">
+
+  <section class="page-section" id="modeling">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <h2 class="mt-0">Let's Get In Touch!</h2>
-          <hr class="divider my-4">
-          <p class="text-muted mb-5">Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!</p>
+        <h2 class="text-black mt-0">Modeling the Data &amp; Importance of Sensitive Categories</h2>
+        <div class="col-lg-8 text-align-left">
+          <hr class="divider dark my-4">
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
+            In order to examine how computational bias is present in the models proposed in literature, we decided to train them twice, once on the entire dataset, and once on the dataset without the sensitive attributes. Therefore, we would be able to compare the ROC curves and observe if any accuracy is lost by not incorporating those variables. Additionally, we will also examine differences in F1 score, false positives, false negatives, and accuracy for the two versions.
+            Selecting from the ones most commonly seen in literature, the machine learning methods we chose to implement were logistic regression as a baseline and an interpretable parametric method, kNN as a nonparametric method, and random forest as a parametric method that generally works well in practice, to optimize for accuracy.
+            <br>
+            <br>
+          </p>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4 ml-auto text-center">
-          <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-          <div>+1 (202) 555-0149</div>
+        <div class="col-lg-10 text-align-left">
+          <h4>Model Performance</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <td><strong>Model Type</strong></td>
+                <td><strong>AUC </strong></td>
+                <td><strong>AUC </strong>(w/o sensitive attributes)</td>
+                <td><strong>F1-Score </strong></td>
+                <td><strong>F1-Score </strong>(w/o sensitive attributes)</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Logistic Regression</td>
+                <td>0.7624</td>
+                <td>0.7478</td>
+                <td>0.78</td>
+                <td>0.78</td>
+              </tr>
+              <tr>
+                <td>kNN</td>
+                <td>0.6151</td>
+                <td>0.6190</td>
+                <td>0.72</td>
+                <td>0.72</td>
+              </tr>
+              <tr>
+                <td>Random Forest</td>
+                <td><strong>0.7635</strong></td>
+                <td><strong>0.7570</strong></td>
+                <td><strong>0.79</strong></td>
+                <td><strong>0.79</strong></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="col-lg-4 mr-auto text-center">
-          <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
-          <!-- Make sure to change the email address in anchor text AND the link below! -->
-          <a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
+        <div class="col-lg-8 text-align-left">
+
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
+          <br>
+          In both versions (with and without the sensitive attributes), the best performing model in terms of the AUC and F1 score is the random forest, which matches our expectations, and kNN the worst performing model.
+          </p>
+
+
+        </div>
+        <div class="col-lg-10 text-align-left">
+          <h4>Logistic Regression Coefficients</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <td><strong>Feature</strong></td>
+                <td><strong>Coefficient </strong></td>
+                <td><strong>Coefficient </strong>(model w/o sensitive attributes)</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>age</td>
+                <td>0.0000</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>gender_male</td>
+                <td>0.1058</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>education_grad</td>
+                <td>0.0000</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>education_univ</td>
+                <td>0.0000</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>marriage_married</td>
+                <td>0.1362</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>marriage_divorced</td>
+                <td>0.0000</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>delay_0</td>
+                <td>0.8901</td>
+                <td>0.5892</td>
+              </tr>
+              <tr>
+                <td>delay_2</td>
+                <td>0.0833</td>
+                <td>0.0359</td>
+              </tr>
+              <tr>
+                <td>delay_3</td>
+                <td>0.1542</td>
+                <td>0.0280</td>
+              </tr>
+              <tr>
+                <td>delay_4</td>
+                <td>0.1025</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>delay_5</td>
+                <td>0.1122</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>delay_6</td>
+                <td>0.1214</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>all others<br>(limit_bal, bill_amount_0, ..., pay_amount_6)</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+
+              <!-- <tr>
+                <td>limit_bal</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>bill_amt_1</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>bill_amt_2</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>bill_amt_3</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>bill_amt_4</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>bill_amt_5</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>bill_amt_6</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>pay_amt_1</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>pay_amt_2</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>pay_amt_3</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>pay_amt_4</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>pay_amt_5</td>
+                <td>0.0000</td>
+                <td>0.0000</td>
+              </tr>
+              <tr>
+                <td>pay_amt_6</td>
+                <td>0.0000</td>
+                <td>0.0000</td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-8 text-align-left">
+
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
+            For our logistic regression with sensitive attributes, the variables with the largest coefficients were the payment delay for the most recent month, third month, being married, being male, and then the payment delays for the other months, with the other attributes having coefficients of 0 (which was to be expected given that we used l1 regularization). All the nonzero coefficients are positive. Thus, we can notice several things for the logistic regression: 1. overall, the more recent months matter more in terms of late payment than the ones further in the past 2. sensitive attributes, particularly being male (gender) and being married (marital status), correlate with an individual being more likely to default on their credit.
+            	For the random forest, we also notice that the payment delay for the most recent month has the highest feature importance, but in this case it is followed by the bill amount for the most recent month, the age of the credit owner, the credit limit, etc., while being married or being male have some of the lowest feature importance scores.
+
+            	In the case of the logistic regression without sensitive attributes, the only variables with nonzero coefficients are (in decreasing order of coefficient magnitude as we go backwards in time) the payment delays for the previous 3 months. For the random forest without sensitive attributes, the variables with the highest coefficients are the bill amount for the most recent month, the payment delay for the most recent month, the credit limit etc. There are only minor differences in terms of these scores and their order compared to the random forest with sensitive attributes.
+
+          </p>
+
         </div>
       </div>
     </div>
   </section>
+
+
+  <!-- Contact Section -->
+  <!-- <section class="page-section" id="something else">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="mt-0">Building and Evaluating Models</h2>
+          <hr class="divider my-4">
+          <p class="text-muted mb-5">	For our final project, we were interested in examining computational biases in socio-technical decision-making systems. Particularly, in the context of intense discussions around the use of algorithms in credit scoring and the possible repercussions of their bias, we were interested in investigating how sensitive attributes might disproportionately impact vulnerable groups in receiving loans and credit lines. In the US, variables such as age, race, gender, and marital status are not included as predictors for credit score calculations [1], yet there are differences between subpopulations for these attributes in terms of loan refusals, credit card limit, etc. For example, it was found that women have lower credit limits than men (probably due to the gap in annual income), and spend a higher percentage of their credit limit, which in turn negatively impacts their credit score [2]. This phenomenon could easily lead to a feedback loop, in which having lower credit scores leads to lower limits, leading to higher spending percentage-wise, leading to lower credit score, and so on.
+
+	In order to investigate possible biases, we selected a credit scoring dataset originally published by Yeh et al. in 2009 [3]. We took into account several factors in our dataset choice; first of all, the target variables included sensitive attributes we wanted to explore (gender, marital status, age, education). Secondly, the dataset is a very popular one, with almost 350 thousand web hits on UCI machine repository, 182 notebook that users have shared and 293 upvotes on Kaggle, and 266 citations of the initial paper. Thus, we would have a point of comparison for our own models. Nevertheless, only little of the published research critically engages with the potential for discriminatory predictions, with gender and marital status feature being mentioned as strong predictors in several of the proposed models [3]. We consider our biggest contribution to be then in this space.
+</p>
+        </div>
+      </div>
+    </div>
+  </section> -->
 
   <!-- Footer -->
   <footer class="bg-light py-5">
     <div class="container">
-      <div class="small text-center text-muted">Copyright &copy; 2019 - Start Bootstrap</div>
+      <div class="small text-center text-muted">Miruna G. Cristus, Everett Sussman, &amp; Jan Geffert, Spring 2019, cover image by <a href="https://unsplash.com/photos/na8l3EPqpvY">twopaddles</a>.</div>
     </div>
   </footer>
 
