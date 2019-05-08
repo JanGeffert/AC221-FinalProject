@@ -502,6 +502,20 @@
             Whereas this is good news in terms of model performance (at least in the US, where these variables would not be user for the credit score),
             it is worth asking whether these should be collected and published in such datasets from the start.
           </p>
+
+
+          <h5 class="text-align-center">Disparate gender impact?</h5>
+          <p class="mb-4" style="line-height:2.3em;">
+            An often-observed phenomenon in algorithmic decision-making systems is <strong>disparate impact</strong>,
+            where a "formally neutral" system adversely affects certain groups of people without intending to.
+            This could even be the case in our debiased model which excludes sensitive or protected attributes,
+            as other remaing, non-protected attributes may be highly correlated.
+            Hence, wewanted to know whether our Random Forest classifier discriminates based on gender.
+          </p>
+          <img class="img-fluid" src="img/roc_by_gender_plot.png" alt="">
+          <p class="mb-4" style="line-height:2.3em;">
+            Inspecting the ROC curve, we did not find major discrepancies in False Positive / True Positive rates based on gender.
+          </p>
         </div>
       </div>
     </div>
