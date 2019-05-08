@@ -100,7 +100,7 @@
           </p>
         </div>
         <div class="col-lg-8 text-center">
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="#thedata">Learn about the data!</a>
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="#thedata">Learn about the data</a>
         </div>
       </div>
     </div>
@@ -267,7 +267,7 @@
   <section class="page-section" id="modeling">
     <div class="container">
       <div class="row justify-content-center">
-        <h2 class="text-black mt-0">Modeling the Data &amp; Importance of Sensitive Categories</h2>
+        <h2 class="text-black mt-0">Modeling &amp; Importance of Sensitive Categories</h2>
         <div class="col-lg-8 text-align-left">
           <hr class="divider dark my-4">
           <p class="text-black-70 mb-4" style="line-height:2.3em;">
@@ -507,21 +507,50 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <!-- <section class="page-section" id="something else">
+  <section class="page-section bg-primary" id="next">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <h2 class="mt-0">Building and Evaluating Models</h2>
-          <hr class="divider my-4">
-          <p class="text-muted mb-5">	For our final project, we were interested in examining computational biases in socio-technical decision-making systems. Particularly, in the context of intense discussions around the use of algorithms in credit scoring and the possible repercussions of their bias, we were interested in investigating how sensitive attributes might disproportionately impact vulnerable groups in receiving loans and credit lines. In the US, variables such as age, race, gender, and marital status are not included as predictors for credit score calculations [1], yet there are differences between subpopulations for these attributes in terms of loan refusals, credit card limit, etc. For example, it was found that women have lower credit limits than men (probably due to the gap in annual income), and spend a higher percentage of their credit limit, which in turn negatively impacts their credit score [2]. This phenomenon could easily lead to a feedback loop, in which having lower credit scores leads to lower limits, leading to higher spending percentage-wise, leading to lower credit score, and so on.
+        <div class="col-lg-8 text-align-left">
+          <h2 class="text-black mt-0">Next Steps</h2>
+          <p class="mb-4" style="line-height:2.3em;">
+            For the next steps in our project, we plan on focusing on two avenues of research.
+          </p>
+          <h5 class="text-align-center">1. Feedback Loop Simulation</h5>
+          <p class="mb-4" style="line-height:2.3em;">
+            A widely discussed issue in credit score assessment is the presence of feedback loops.
+            If you are an individual who is initially denied for a loan or credit card line, then you might face additional financial hardships,
+            such as not being able to purchase a home or car, or pay for unexpected costs.
+            This might, in turn, negatively impact your credit score, making it even less likely for you to get further loans.
+            This kind of feedback loops can also be seen in predictive policing, as described in a 2018 paper by Ensign et al. [4].
+            Employing a similar methodology, we would like to create simple simulations to model such feedback loops and potential interventions.
+          </p>
+          <h5 class="text-align-center">2. Categorizing practicioner's errors</h5>
+          <p class="mb-4" style="line-height:2.3em;">
+            As previously mentioned, many Kaggle users and papers have done work with this dataset. While investigating issues with unexplained categories (that we managed to get explanations for directly from the author of the original paper), we noticed several types of errors that were being made in the analysis, either in terms of the technical aspects of the models employed, or in the interpretation of the results. We aim to look at a larger number of these papers/notebook and create a classification for the most common type of errors, and discuss their implications.
+          </p>
 
-	In order to investigate possible biases, we selected a credit scoring dataset originally published by Yeh et al. in 2009 [3]. We took into account several factors in our dataset choice; first of all, the target variables included sensitive attributes we wanted to explore (gender, marital status, age, education). Secondly, the dataset is a very popular one, with almost 350 thousand web hits on UCI machine repository, 182 notebook that users have shared and 293 upvotes on Kaggle, and 266 citations of the initial paper. Thus, we would have a point of comparison for our own models. Nevertheless, only little of the published research critically engages with the potential for discriminatory predictions, with gender and marital status feature being mentioned as strong predictors in several of the proposed models [3]. We consider our biggest contribution to be then in this space.
-</p>
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
+
+  <section class="page-section" id="fairness">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-align-left">
+          <h5 class="text-black mt-0">References</h2>
+          <p class="mb-4" style="line-height:4em;">
+            <ul style="list-style-type:none;line-height:2.2em;">
+              <li>[1] https://www.creditkarma.com/advice/i/learn-credit-score-factors/</li>
+              <li>[2] https://www.fiscaltiger.com/gender-affect-credit-scores/</li>
+              <li>[3] Yeh, I-Cheng, and Che-hui Lien. "The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients." Expert Systems with Applications 36.2 (2009): 2473-2480.</li>
+              <li>[4] http://proceedings.mlr.press/v81/ensign18a/ensign18a.pdf</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="bg-light py-5">
