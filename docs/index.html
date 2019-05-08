@@ -51,6 +51,9 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#modeling">Modeling</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#fairness">Fairness</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -480,6 +483,29 @@
     </div>
   </section>
 
+  <section class="page-section" id="fairness">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-align-left">
+          <h2 class="text-black mt-0">Fairness Assessment</h2>
+          <p class="mb-4" style="line-height:2.3em;">
+            Based on the results summarized above, we notice that there is a very small difference in terms of performance between each method, with and without sensitive attributes.
+            The performance of the logistic regression and of the random forest in terms of the AUC is not significantly smaller,
+            while for kNN, the AUC actually increases when we exclude the sensitive variables.
+
+          </p>
+          <h5 class="text-align-center">Receiver Operating Characteristic Curve</h5>
+          <img class="img-fluid" src="img/roc_plot.png" alt="">
+          <p class="mb-4" style="line-height:2.3em;">
+            <!-- Furthermore, if we compare the ROC curves for our first random forest model by plotting separately by gender, we again notice very small differences. TO ADD MORE BASED ON PLOT -->
+            Our results suggest that, in this particular case, there would be insignificant accuracy losses by not including the aforementioned sensitive attributes.
+            Whereas this is good news in terms of model performance (at least in the US, where these variables would not be user for the credit score),
+            it is worth asking whether these should be collected and published in such datasets from the start.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Contact Section -->
   <!-- <section class="page-section" id="something else">
