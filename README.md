@@ -11,6 +11,8 @@
 
 * `prior_research`: papers referenced or used as background research
 
+* `tests`: unit tests run by continuous integration
+
 ## Work log
 
 ### 04-21-2019
