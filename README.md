@@ -12,7 +12,7 @@ docs folder: files for the website
 
 prior_research: contains papers referenced or used as background research
 
-## 04-21-2019
+# 04-21-2019
 * Set up Github Repo
 * Upload initial background research
 * Add data
