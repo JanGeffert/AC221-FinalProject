@@ -1,16 +1,17 @@
 # AC221-FinalProject
 
-Guide to the repo:
+## How this repository is organized
+* `eda_miru.ipynb`: main notebook with data EDA & analysis
 
-eda_miru.ipynb: main notebook with data EDA & analysis
+* `data` directory: all data used for analysis in our project
+  * `age.csv`, `gender.csv`, `marital.csv`: demographic statistics on Taiwan population
+  * `data.csv`, `data.xls`: actual dataset used for credit default predictions
 
-data folder: all data used for analysis in our project
-* age.csv, gender.csv, marital.csv: demographic statistics on Taiwan population
-* data.csv, data.xls: actual dataset used for credit default predictions
+* `docs` directory: files for the writeup website
 
-docs folder: files for the website
+* `prior_research`: papers referenced or used as background research
 
-prior_research: contains papers referenced or used as background research
+## Work log
 
 ### 04-21-2019
 * Set up Github Repo
