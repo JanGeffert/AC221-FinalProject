@@ -70,7 +70,7 @@
         <div class="col-lg-8 align-self-baseline">
           <p class="text-white-75 font-weight-light mb-5">Assessing algorithmic bias of a popular credit default dataset
             <br>
-            By Miruna G. Cristus, Everett Sussman, & Jan Geffert
+            by Miruna G. Cristus, Everett Sussman, & Jan Geffert
             <br>
             <br>
             Find our Github repository <a href="https://github.com/JanGeffert/AC221-FinalProject">here</a>.
@@ -106,7 +106,7 @@
   <section class="page-section" id="intro">
     <div class="container">
       <div class="row justify-content-center">
-        <h2 class="text-black mt-0">Introduction</h2>
+        <h2 class="text-black-center mt-0">Introduction</h2>
         <div class="col-lg-8 text-align-left">
           <hr class="divider dark my-4">
           <p class="text-black-70 mb-4" style="line-height:2.3em;">
@@ -223,7 +223,8 @@ In order to understand the role of protected attributes in credit scoring and to
         <h2 class="text-black mt-0">Methods: 2. Exploratory Data Analysis</h2>
         <div class="col-lg-8">
           <hr class="divider dark my-4">
-          <p>A common observation in the field of algorithmic fairness is that the data used to train algorithmic decision-making systems already encodes outcomes of various historical discriminatory practices. Therefore a simple question worth asking is who is missing in this dataset. To this end, we compared the distributions of several demographic attributes in the dataset to that of the Taiwanese population overall.
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
+            A common observation in the field of algorithmic fairness is that the data used to train algorithmic decision-making systems already encodes outcomes of various historical discriminatory practices. Therefore a simple question worth asking is who is missing in this dataset. To this end, we compared the distributions of several demographic attributes in the dataset to that of the Taiwanese population overall.
              <br>
              <br>
              <br>
@@ -240,7 +241,7 @@ In order to understand the role of protected attributes in credit scoring and to
           <img class="img-fluid" src="img/credit_age.png" alt="">
         </div>
         <div class="col-lg-8">
-          <p>
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
             <br>
             <br>
             The people who are found in the credit card data are adults who tend to be younger than the general Taiwanese population. Especially elderly citizens are not represented. When faced with a new, unseen credit-card holder who is 70 or older, an automated decision-making system, such as one powered by logistic regression, may therefore likely extrapolate rather than interpolate from seen data.
@@ -259,7 +260,7 @@ In order to understand the role of protected attributes in credit scoring and to
           <img class="img-fluid" src="img/credit_gender.png" alt="">
         </div>
         <div class="col-lg-8">
-          <p>
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
             <br>
             <br>
             Women are overrepresented in the dataset. Further, the dataset’s M/F ontology reinscribes problematic binarized notions of gender, non-binary people are erased. [9]
@@ -279,7 +280,7 @@ In order to understand the role of protected attributes in credit scoring and to
           <img class="img-fluid" src="img/credit_marital.png" alt="">
         </div>
         <div class="col-lg-8">
-          <p>
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
             <br>
             <br>
             While the majority of the Taiwanese population is married, the majority of the people represented in the credit dataset are single. The data further includes a disproportionately small number of divorced individuals. Widowed citizens are not represented explicitly in the credit data ontology.
@@ -294,8 +295,8 @@ In order to understand the role of protected attributes in credit scoring and to
       <div class="row justify-content-center">
         <h2 class="text-black mt-0">Methods: 3. Transformations</h2>
         <div class="col-lg-8">
+          <hr class="divider dark my-4">
           <p class="text-black-70 mb-4" style="line-height:2.3em;">
-            <hr class="divider dark my-4">
             Inspecting the data, we also notice that some values of certain variables were undocumented (education: 0, 4, 5, 6; marital status: 0) prompting us to remove all observations including such values, resulting in a final count of <strong>29480</strong> observations (98.26% of original data). The removal of these observations does not meaningfully change the marginal distributions of the dataset’s features. Furthermore, we transform the “history of payment” variable, which in its original form encoded both ordinal and categorical information, for the purposes of model interpretability. Investigating options with both a categorical variable for the “no_delay” value in payment subgroups and a continuous variable to measure the delay payments, we concluded that in terms of both model interpretability and performance, it was best to lump the no-delay categories into only one (0). Thus, our new history of payment attribute is described by:
             <br>
             <br>
@@ -315,10 +316,10 @@ In order to understand the role of protected attributes in credit scoring and to
   <section class="page-section" id="methods4">
     <div class="container">
       <div class="row justify-content-center">
-        <h2 class="text-black mt-0">Methods: 4. Modeling</h2>
+        <h2 class="text-black mt-0" style="width:400px;">Methods: 4. Modeling</h2>
         <div class="col-lg-8">
+          <hr class="divider dark my-4">
           <p class="text-black-70 mb-4" style="line-height:2.3em;">
-            <hr class="divider dark my-4">
             In order to examine how computational bias may be present in the models proposed in literature, we train and evaluate classifiers on two sets of features: (A) a feature set comprising all features, and (B) a feature set that excludes sensitive attributes. By comparing the predictive performance of models trained on (A) with that of models trained on (B), we can determine whether any accuracy is lost via the exclusion of sensitive variables. We split the dataset uniformly at random into training and validation sets with a 80/20 ratio, retaining the label proportions.
             <br>
             <br>
