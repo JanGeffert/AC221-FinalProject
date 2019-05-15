@@ -37,22 +37,22 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">Introduction</a>
+            <a class="nav-link js-scroll-trigger" href="#intro">Introduction</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#thedata">Data</a>
+            <a class="nav-link js-scroll-trigger" href="#related">Background</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#bias">Bias</a>
+            <a class="nav-link js-scroll-trigger" href="#methods1">Methods</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#wrangling">Wrangling</a>
+            <a class="nav-link js-scroll-trigger" href="#results1">Results</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#modeling">Modeling</a>
+            <a class="nav-link js-scroll-trigger" href="#discussion">Discussion</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#fairness">Fairness</a>
+            <a class="nav-link js-scroll-trigger" href="#references">References</a>
           </li>
         </ul>
       </div>
@@ -68,53 +68,107 @@
           <hr class="divider my-4">
         </div>
         <div class="col-lg-8 align-self-baseline">
-          <p class="text-white-75 font-weight-light mb-5">Assessing algorithmic bias of a popular credit default dataset.</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Start Reading</a>
+          <p class="text-white-75 font-weight-light mb-5">Assessing algorithmic bias of a popular credit default dataset
+            <br>
+            By Miruna G. Cristus, Everett Sussman, & Jan Geffert
+            <br>
+            <br>
+            Find our Github repository <a href="https://github.com/JanGeffert/AC221-FinalProject">here</a>.
+          </p>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#abstract">Start Reading</a>
         </div>
       </div>
     </div>
   </header>
 
+
+
+
   <!-- About Section -->
-  <section class="page-section bg-primary" id="about">
+  <section class="page-section bg-primary" id="abstract">
     <div class="container">
       <div class="row justify-content-center">
-        <h2 class="text-white mt-0">Introduction & Motivation</h2>
+        <h2 class="text-white mt-0">Abstract</h2>
         <div class="col-lg-8 text-align-left">
           <hr class="divider light my-4">
           <p class="text-white mb-4" style="line-height:2.3em;">
-            For our final project, we were interested in examining computational biases in socio-technical decision-making systems.
-            Particularly, in the context of intense discussions around the use of algorithms in credit scoring and the possible
-            repercussions of their bias, we were interested in investigating how sensitive attributes might disproportionately
-            impact vulnerable groups in receiving loans and credit lines.
-            In the US, variables such as age, race, gender, and marital status are not
-            included as predictors for credit score calculations [1], yet there are differences
-            between subpopulations for these attributes in terms of loan refusals,
-            credit card limit, etc. For example, it was found that women have lower credit
-            limits than men (probably due to the gap in annual income), and spend a higher
-            percentage of their credit limit, which in turn negatively impacts their credit score [2].
-            This phenomenon could easily lead to a feedback loop, in which having lower credit scores
-            leads to lower limits, leading to higher spending percentage-wise, leading to lower credit score, and so on.
-
-	In order to investigate possible biases, we selected a credit scoring dataset originally published by Yeh et al. in 2009 [3]. We took into account several factors in our dataset choice; first of all, the target variables included sensitive attributes we wanted to explore (gender, marital status, age, education). Secondly, the dataset is a very popular one, with almost 350 thousand web hits on UCI machine repository, 182 notebook that users have shared and 293 upvotes on Kaggle, and 266 citations of the initial paper. Thus, we would have a point of comparison for our own models. Nevertheless, only little of the published research critically engages with the potential for discriminatory predictions, with gender and marital status feature being mentioned as strong predictors in several of the proposed models [3]. We consider our biggest contribution to be then in this space.
+            We investigate how credit-scoring systems might disproportionately impact vulnerable groups in receiving loans and credit lines by assessing their use of different sensitive demographic attributes (age, gender, marital status, education). Using a dataset of credit default behavior of Taiwanese credit card holders, we implemented three machine learning methods commonly used in literature for credit default studies (logistic regression, random forest, kNN), trained once on the set of features, and then on the set of features with the sensitive attributes removed. We find that there are negligible difference in accuracy for the models with and without sensitive attributes, raising questions of why these sensitive attributes were collected in the first place. We further find that our classifier exhibits disparate impact bias, erroneously flagging people with a high school education as likely to default more often than people with higher degrees.
           </p>
         </div>
-        <div class="col-lg-8 text-center">
+        <!-- <div class="col-lg-8 text-center">
           <a class="btn btn-light btn-xl js-scroll-trigger" href="#thedata">Learn about the data</a>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
 
   <!-- Services Section -->
-  <section class="page-section" id="thedata">
+  <section class="page-section" id="intro">
     <div class="container">
       <div class="row justify-content-center">
-        <h2 class="text-black mt-0">Understanding the Dataset</h2>
+        <h2 class="text-black mt-0">Introduction</h2>
         <div class="col-lg-8 text-align-left">
           <hr class="divider dark my-4">
           <p class="text-black-70 mb-4" style="line-height:2.3em;">
-            The dataset has a total of <strong>30,000 observations</strong> describing credit card owners in Taiwan. The explanatory variables include sensitive attributes (gender, age, marital status, education), as well as their payment behavior for the previous six months (repayment status, amount of bill statement, amount of previous payment). The target variable is a binary one, denoting whether the credit card owner defaulted on their loan or not. Within this sample, the rate of default payment is 22.12%.
+            Much of the recent success of machine learning in a number of domains has been attributed to the emergence of large datasets, giving rise to adages such as “the more data, the better.” Accordingly, providers of prediction services, notably credit-scoring companies, have broadened the range of information they use to construct their models. At the same time, algorithmic decision-making systems in high-stakes scenarios have attracted increased scrutiny, as civil society and academia have raised concerns about algorithmic bias.
+<br>
+<br>
+In this paper, we investigate how credit-scoring systems that make use of a number of sensitive demographic attributes might disproportionately impact vulnerable groups in receiving loans and credit lines, by analyzing dataset of default behavior of Taiwanese credit-card holders.
+<br>
+<br>
+In the United States, the Equal Credit Opportunity Act (ECOA) enacted by Congress in 1974 prohibits credit discrimination based certain protected categories, such as race, age, or marital status [1,2]. While this information may be collected by creditors, it cannot be used in order to make decisions about whether to offer credit, or to determine the terms of the credit. ECOA applies to decisions made by algorithms just as much as to those made by people.
+<br>
+<br>
+Yet, as economic status is known to be heavily correlated with protected attributes, such as race, ECOA expectedly does not remove all differences in treatment between subpopulations when it comes to loan refusals, credit card limits, etc. Women in the United States, for example, tend to have lower credit limits than men, due to the gender gap in annual income. Consequently, they tend to spend a higher percentage of their credit limit, which in turn negatively impacts their credit score. [3] This phenomenon could therefore easily lead to runaway feedback loops that entrench existing inequalities. It is an instance of disparate impact, where a "formally neutral" system adversely affects certain groups of people without its designers having explicitly intended such outcomes.
+<br>
+<br>
+In order to understand the role of protected attributes in credit scoring and to assess the potential of disparate impact of credit-scoring algorithms, we examine a credit-default dataset published by Yeh et al. in 2009 [4], which features both sensitive demographic attributes (gender, marital status, age, education) and payment behavior information, as well as the target variable of whether a person has defaulted on their credit or not. We assess the predictive performance of three commonly used classification models: logistic regression, random forest, and k-nearest neighbors which we train on (A) the set of all features and (B) on the set of features excluding sensitive attributes. In a second step, we determine whether the prediction quality of the best-performing classifier differs for different subpopulations who share a sensitive attribute. Finally, we discuss our results in the context of more general considerations on computational bias and data collection practices.
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Services Section -->
+  <section class="page-section" id="related">
+    <div class="container">
+      <div class="row justify-content-center">
+        <h2 class="text-black mt-0">Background</h2>
+        <div class="col-lg-8 text-align-left">
+          <hr class="divider dark my-4">
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
+            Credit scores have become an increasingly important part of people’s economic life, as they are used as a basis for many activities and services, from buying a house and leasing a car, to insurance rates or employment [5, 6]. If a person is predicted to be at high risk for defaulting and therefore does not get access to the credit they need, they might not qualify for a home loan, have difficulty in paying unplanned expenses (for example, an urgent medical issue), and in general have their financial stability threatened. As automatic prediction systems increasingly mediate such credit-scoring decisions, it is crucial to understand and mitigate the risk of reinscribing and calcifying historical discriminatory practices.
+<br>
+<br>
+            Previous research is divided on whether credit scoring has a disparate impact on marginalized groups or not. A 2012 analysis of the National Fair Housing Alliance claims that not only do credit scores not accurately predict default rates but also that they disproportionately impact communities of color [7]. As mentioned above, other studies show a disparate impact of credit scoring on women compared to men [3]. However, another paper claims no evidence of disparate impact by race or gender, but limited disparate impact by age, where older individuals are at a disadvantage [8].
+<br>
+<br>
+            The dataset which we analyze in this paper was selected due to its popularity: Hosted on the UCI machine repository, almost 350,000 web hits were recorded, 182 notebooks have been shared by data science practitioners on Kaggle, and 266 scientific papers cite the initial paper, according to Google Scholar. When reviewing this literature, we were shocked to find that little to none of the published research critically engages with the potential for discriminatory predictions. Gender and marital status, in fact, are claimed to be strong predictors in several of the proposed models [4] without any critical thought concerning their use. We further found no papers that explicitly address disparate impact or even the question of whether the inclusion of sensitive attributes was beneficial for predictive performance.
+<br>
+<br>
+            We thus plan to contribute to the literature not only by assessing disparate impact on common algorithms in default predictions but also by analyzing whether accuracy is truly lost when algorithms do not use protected attributes. The latter question is important since governance debates about the use of personal information often center around a supposed trade-off between accuracy and utility of the system and privacy of the data subjects.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- Services Section -->
+  <section class="page-section" id="methods1">
+    <div class="container">
+      <div class="row justify-content-center">
+        <h2 class="text-black mt-0">Methods: 1. Describing the Data</h2>
+        <div class="col-lg-8 text-align-left">
+          <hr class="divider dark my-4">
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
+            The dataset comprises <strong>30,000 observations</strong>, each describing a unique credit-card account holder in Taiwan in September, 2005. The explanatory variables include sensitive attributes (gender, age, marital status, education), as well as the account holder’s payment behavior for the preceding six months (repayment status, amount of bill statement, amount of previous payment). A binary variable denotes whether the credit card owner defaulted (1) on their loan or not (0). Within the sample, the <strong>rate of default payment</strong> is <strong>22.12%</strong>.
+            <br>
+            <br>
 
             <table class="table">
               <tbody>
@@ -162,16 +216,14 @@
     </div>
   </section>
 
-    <!-- Services Section -->
-  <section class="page-section" id="bias">
+
+  <section class="page-section" id="methods2">
     <div class="container">
       <div class="row justify-content-center">
-        <h2 class="text-black mt-0">Potential Sources of Bias</h2>
+        <h2 class="text-black mt-0">Methods: 2. Exploratory Data Analysis</h2>
         <div class="col-lg-8">
           <hr class="divider dark my-4">
-          <p>A common observation in algorithmic fairness is that the data that enables ML-based algorithmic decision-making systems
-             already encodes various societal inquities. Therefore it is worth to look who is missing in these datasets. To this end,
-             we compared the distributions of several demographic attributes in the dataset to that of Taiwan overall.
+          <p>A common observation in the field of algorithmic fairness is that the data used to train algorithmic decision-making systems already encodes outcomes of various historical discriminatory practices. Therefore a simple question worth asking is who is missing in this dataset. To this end, we compared the distributions of several demographic attributes in the dataset to that of the Taiwanese population overall.
              <br>
              <br>
              <br>
@@ -191,11 +243,7 @@
           <p>
             <br>
             <br>
-            The people who are found in the credit card data are adults and tend
-            to be younger than the general Taiwanese population overall. Especially
-            elderly citizens seem to be missing. When faced with a new, unseen credit-card holder
-            who is 70 or older, an automated decision-making system may therefore have to extrapolate
-            rather than interpolate from seen data.
+            The people who are found in the credit card data are adults who tend to be younger than the general Taiwanese population. Especially elderly citizens are not represented. When faced with a new, unseen credit-card holder who is 70 or older, an automated decision-making system, such as one powered by logistic regression, may therefore likely extrapolate rather than interpolate from seen data.
             <br>
             <br>
             <br>
@@ -214,7 +262,7 @@
           <p>
             <br>
             <br>
-            Women are overrepresented in the dataset. Further, the "M,F" ontology reinscribes problematic binarized notions of gender.
+            Women are overrepresented in the dataset. Further, the dataset’s M/F ontology reinscribes problematic binarized notions of gender, non-binary people are erased. [9]
             <br>
             <br>
             <br>
@@ -234,29 +282,29 @@
           <p>
             <br>
             <br>
-            While the majority of the Taiwanese population is married, the
-            majority of the people represented in the credit dataset are single.
-            The data further includes as disproportionately small number of
-            divorced individuals. Widowed citizens are not represented in the
-            credit data ontology.
+            While the majority of the Taiwanese population is married, the majority of the people represented in the credit dataset are single. The data further includes a disproportionately small number of divorced individuals. Widowed citizens are not represented explicitly in the credit data ontology.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Call to Action Section -->
-  <section class="page-section bg-dark text-white" id="wrangling">
+  <section class="page-section" id="methods3">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8 text-align-left">
-          <h2 class="text-black mt-0">Data Wrangling</h2>
-          <p class="text-white mb-4" style="line-height:2.3em;">
-            Due to lack of clarity in what the “other” values mean for the education (categories 0, 4, 5, 6) and marital status (category 0) attributes, we decided to drop these rows, giving us a final count of 299480 observations (99.82% of original data). Furthermore, we decided to change the history of payment for the purposes of model interpretability. After investigating options with both a categorical variable for the no delay in payment subgroups and a continuous variable to measure the delay payments, we concluded that in terms of both model interpretability and performance, it was best to lump the no-delay categories into only one (0). Thus, our new history of payment attribute could be described as such:
-
-            History of payment: payment records for the previous 6 months, from April to September; categories: no delay (0), payment delay for one month (1), payment delay for 2 months (2), etc.
-
-            Finally, we used one hot encoding on our categorical variables: gender, education, and marriage.
+        <h2 class="text-black mt-0">Methods: 3. Transformations</h2>
+        <div class="col-lg-8">
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
+            <hr class="divider dark my-4">
+            Inspecting the data, we also notice that some values of certain variables were undocumented (education: 0, 4, 5, 6; marital status: 0) prompting us to remove all observations including such values, resulting in a final count of <strong>29480</strong> observations (98.26% of original data). The removal of these observations does not meaningfully change the marginal distributions of the dataset’s features. Furthermore, we transform the “history of payment” variable, which in its original form encoded both ordinal and categorical information, for the purposes of model interpretability. Investigating options with both a categorical variable for the “no_delay” value in payment subgroups and a continuous variable to measure the delay payments, we concluded that in terms of both model interpretability and performance, it was best to lump the no-delay categories into only one (0). Thus, our new history of payment attribute is described by:
+            <br>
+            <br>
+            <strong>History of payment:</strong> payment records for the previous 6 months, from April to September; categories: no delay (0), payment delay for one month (1), payment delay for 2 months (2), etc.
+            <br>
+            <br>
+            Finally, we convert the categorical variables gender, education, and marital status into one-hot encodings.
+            <br>
+            <br>
           </p>
         </div>
       </div>
@@ -264,15 +312,47 @@
   </section>
 
 
-  <section class="page-section" id="modeling">
+  <section class="page-section" id="methods4">
     <div class="container">
       <div class="row justify-content-center">
-        <h2 class="text-black mt-0">Modeling &amp; Importance of Sensitive Categories</h2>
+        <h2 class="text-black mt-0">Methods: 4. Modeling</h2>
+        <div class="col-lg-8">
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
+            <hr class="divider dark my-4">
+            In order to examine how computational bias may be present in the models proposed in literature, we train and evaluate classifiers on two sets of features: (A) a feature set comprising all features, and (B) a feature set that excludes sensitive attributes. By comparing the predictive performance of models trained on (A) with that of models trained on (B), we can determine whether any accuracy is lost via the exclusion of sensitive variables. We split the dataset uniformly at random into training and validation sets with a 80/20 ratio, retaining the label proportions.
+            <br>
+            <br>
+            We train three models, tuning hyperparameters separately for each of the feature sets:
+            <br>
+            <ul>
+              <li><strong>Logistic regression</strong> as a baseline and an interpretable parametric model</li>
+              <li><strong>K-nearest neighbors</strong> as a nonparametric model</li>
+              <li><strong>Random forest</strong> as a parametric model that we expected to reach high predictive power in practice with little parameter tuning</li>
+            </ul>
+            <br>
+            In a second step, to examine disparate impact, we choose the best-performing classifier on feature set (B) and inspect its ROC curves for the following subpopulations:
+            <br>
+            <ul>
+              <li><strong>Gender</strong> (m, f)</li>
+              <li><strong>Age</strong> (younger than 35, 35-50, older than 50)</li>
+              <li><strong>Marital status</strong> (single, married, divorced)</li>
+              <li><strong>Educational attainment</strong> (highschool, university, graduate school)</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="page-section" id="results1">
+    <div class="container">
+      <div class="row justify-content-center">
+        <h2 class="text-black mt-0">Results: 1. Model Accuracy and Interpretation</h2>
         <div class="col-lg-8 text-align-left">
           <hr class="divider dark my-4">
           <p class="text-black-70 mb-4" style="line-height:2.3em;">
-            In order to examine how computational bias is present in the models proposed in literature, we decided to train them twice, once on the entire dataset, and once on the dataset without the sensitive attributes. Therefore, we would be able to compare the ROC curves and observe if any accuracy is lost by not incorporating those variables. Additionally, we will also examine differences in F1 score, false positives, false negatives, and accuracy for the two versions.
-            Selecting from the ones most commonly seen in literature, the machine learning methods we chose to implement were logistic regression as a baseline and an interpretable parametric method, kNN as a nonparametric method, and random forest as a parametric method that generally works well in practice, to optimize for accuracy.
+            The performance of the fitted models in terms of AUC, precision, recall and F1 scores are summarized in the table below. F1 score, rather than accuracy, was chosen as an additional figure of merit due to the aforementioned unbalanced label distribution.
             <br>
             <br>
           </p>
@@ -283,10 +363,10 @@
             <thead>
               <tr>
                 <td><strong>Model Type</strong></td>
-                <td><strong>AUC </strong></td>
-                <td><strong>AUC </strong>(w/o sensitive attributes)</td>
-                <td><strong>F1-Score </strong></td>
-                <td><strong>F1-Score </strong>(w/o sensitive attributes)</td>
+                <td><strong>AUC </strong>(A)</td>
+                <td><strong>AUC </strong> (B)</td>
+                <td><strong>F1-Score </strong>(A)</td>
+                <td><strong>F1-Score </strong>(B)</td>
               </tr>
             </thead>
             <tbody>
@@ -318,7 +398,7 @@
 
           <p class="text-black-70 mb-4" style="line-height:2.3em;">
           <br>
-          In both versions (with and without the sensitive attributes), the best performing model in terms of the AUC and F1 score is the random forest, which matches our expectations, and kNN the worst performing model.
+          For both feature sets, the best performing model in terms of the F1 score is random forest, matching our expectations and kNN is the worst performing model. Interestingly, there is no significant difference in overall performance between random forest and logistic regression; in fact, logistic regression in both cases has a higher F1 score for the “default” category than for the “no-default” category.
           </p>
 
 
@@ -329,8 +409,8 @@
             <thead>
               <tr>
                 <td><strong>Feature</strong></td>
-                <td><strong>Coefficient </strong></td>
-                <td><strong>Coefficient </strong>(model w/o sensitive attributes)</td>
+                <td><strong>Coefficient </strong> (A)</td>
+                <td><strong>Coefficient </strong> (B) w/o sensitive attributes</td>
               </tr>
             </thead>
             <tbody>
@@ -471,11 +551,21 @@
         <div class="col-lg-8 text-align-left">
 
           <p class="text-black-70 mb-4" style="line-height:2.3em;">
-            For our logistic regression with sensitive attributes, the variables with the largest coefficients were the payment delay for the most recent month, third month, being married, being male, and then the payment delays for the other months, with the other attributes having coefficients of 0 (which was to be expected given that we used l1 regularization). All the nonzero coefficients are positive. Thus, we can notice several things for the logistic regression: 1. overall, the more recent months matter more in terms of late payment than the ones further in the past 2. sensitive attributes, particularly being male (gender) and being married (marital status), correlate with an individual being more likely to default on their credit.
-            	For the random forest, we also notice that the payment delay for the most recent month has the highest feature importance, but in this case it is followed by the bill amount for the most recent month, the age of the credit owner, the credit limit, etc., while being married or being male have some of the lowest feature importance scores.
+            Interpreting the coefficients of the logistic regression on feature set A, the most important features are, in order of importance, the payment delay for the most recent month, third month, being married, being male, and lastly the payment delays for the other months (all positive). All other attributes have coefficients of 0, due to L1 regularization which we found to outperform L2 regularization. Intuitively, payment delays in recent months are more predictive of a person defaulting than in months further in the past. The model does make use of sensitive attributes, where being male (gender) and being married (marital status) correlate with an individual being more likely to default on their credit. Deploying such a model would be illegal according to ECOA.
+<br>
+<br>
+            In a similar analysis of the feature importance statistics in random forest we notice that the payment delay for the most recent month has the highest feature importance, but is followed by the bill amount for the most recent month, and only then by the age of the credit owner, the credit limit, etc. Different from logistic regression, being married or being male have some of the lowest feature importance scores. This may be explained by the ability of random forest to model non-linearities in the data.
+<br>
+<br>
+            Excluding sensitive attributes in feature set B, the only variables with non-zero coefficients in logistic regression are the payment delays for the previous 3 months (again, in decreasing order of coefficient magnitude as we go backwards in time). For random forest without sensitive attributes, the variables with the highest coefficients are the bill amount for the most recent month, the payment delay for the most recent month, the credit limit etc. There are only minor differences in terms of these scores and their order compared to the random forest with sensitive attributes.
+          </p>
 
-            	In the case of the logistic regression without sensitive attributes, the only variables with nonzero coefficients are (in decreasing order of coefficient magnitude as we go backwards in time) the payment delays for the previous 3 months. For the random forest without sensitive attributes, the variables with the highest coefficients are the bill amount for the most recent month, the payment delay for the most recent month, the credit limit etc. There are only minor differences in terms of these scores and their order compared to the random forest with sensitive attributes.
+          <h5 class="text-align-center">Receiver Operating Characteristic Curve</h5>
+          <img class="img-fluid" src="img/roc_plot.png" alt="">
 
+          <p class="mb-4" style="line-height:2.3em;">
+            Based on the results summarized above, we note that there is a very small difference in terms of performance between each method on the featuresets with sensitive attributes (A) and without sensitive attributes (B). The performance of the logistic regression and of the random forest in terms of the AUC is not significantly worse, while for kNN, the AUC actually increases when we exclude the sensitive variables. Our results suggest that, in this particular case, removing sensitive attributes would result in negligible performance degradation.
+<br>
           </p>
 
         </div>
@@ -483,38 +573,77 @@
     </div>
   </section>
 
-  <section class="page-section" id="fairness">
+  <section class="page-section" id="results2">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8 text-align-left">
-          <h2 class="text-black mt-0">Fairness Assessment</h2>
+          <h2 class="text-black mt-0">Results 2: Disparate Impact</h2>
           <p class="mb-4" style="line-height:2.3em;">
-            Based on the results summarized above, we notice that there is a very small difference in terms of performance between each method, with and without sensitive attributes.
-            The performance of the logistic regression and of the random forest in terms of the AUC is not significantly smaller,
-            while for kNN, the AUC actually increases when we exclude the sensitive variables.
-
+            We select the random forest model trained on feature set B (the best model) in order to analyze its potential for disparate impact.
+            <br>
+            <h5 class="text-align-center">Gender, Age, Marital Status</h5>
           </p>
-          <h5 class="text-align-center">Receiver Operating Characteristic Curve</h5>
-          <img class="img-fluid" src="img/roc_plot.png" alt="">
-          <p class="mb-4" style="line-height:2.3em;">
-            <!-- Furthermore, if we compare the ROC curves for our first random forest model by plotting separately by gender, we again notice very small differences. TO ADD MORE BASED ON PLOT -->
-            Our results suggest that, in this particular case, there would be insignificant accuracy losses by not including the aforementioned sensitive attributes.
-            Whereas this is good news in terms of model performance (at least in the US, where these variables would not be user for the credit score),
-            it is worth asking whether these should be collected and published in such datasets from the start.
-          </p>
-
-
-          <h5 class="text-align-center">Disparate gender impact?</h5>
-          <p class="mb-4" style="line-height:2.3em;">
-            An often-observed phenomenon in algorithmic decision-making systems is <strong>disparate impact</strong>,
-            where a "formally neutral" system adversely affects certain groups of people without intending to.
-            This could even be the case in our debiased model which excludes sensitive or protected attributes,
-            as other remaing, non-protected attributes may be highly correlated.
-            Hence, wewanted to know whether our Random Forest classifier discriminates based on gender.
-          </p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 text-align-left">
           <img class="img-fluid" src="img/roc_by_gender_plot.png" alt="">
-          <p class="mb-4" style="line-height:2.3em;">
-            Inspecting the ROC curve, we did not find major discrepancies in False Positive / True Positive rates based on gender.
+        </div>
+
+        <div class="col-lg-4 text-align-left">
+          <img class="img-fluid" src="img/roc_by_age_plot.png" alt="">
+        </div>
+
+        <div class="col-lg-4 text-align-left">
+          <img class="img-fluid" src="img/roc_by_marital_plot.png" alt="">
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <p class="mb-4" style="line-height:2.3em;">
+          The classifier does not perform significantly differently for subpopulations along the lines of gender, marital status, and age. (“divorced” for marital status had only few samples (<100), resulting in the jagged ROC curve). We do not notice any major discrepancies in false positive or true positive rates based on the sensitive categories.
+        </p>
+      </div>
+      <div class="row justify-content-center">
+        <p class="mb-4" style="line-height:2.3em;">
+          <h5 class="text-align-center">Education</h5>
+        </p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 text-align-left">
+          <img class="img-fluid" src="img/roc_by_edu_plot.png" alt="">
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <p class="mb-4" style="line-height:2.3em;">
+            The classifier underperforms when making predictions for people with high school degrees as their highest educational attainment for thresholds with true positive rates > 0.6. Therefore, the high-school subpopulation would be erroneously flagged by an automatic decision-making system more often than other people with higher degrees.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="page-section" id="discussion">
+    <div class="container">
+      <div class="row justify-content-center">
+        <h2 class="text-black mt-0">Discussion</h2>
+        <div class="col-lg-8">
+          <hr class="divider dark my-4">
+          <p class="text-black-70 mb-4" style="line-height:2.3em;">
+              Overall, there were no major differences in terms of model performance (AUC) between the methods that used sensitive attributes and those that did not. This disproves the common narrative of there being a trade-off between accuracy and privacy/bias.
+<br>
+<br>
+              Both the risk of legal exposure for failing to protect this sensitive data and the long-term engineering benefits of keeping ML pipelines simple lead us to believe that it would be rational to minimize data collection. Age, education, gender and marital status are all quasi-identifiers, which in combination with other data might allow for the re-identification of the subjects in the dataset, and consequently the revealing of sensitive financial data associated with them. Including the variables in the dataset could also lead to human bias (even if it is implicit) for decision makers who would have access to the prediction, as well as to the rest of the profile of the subject. In our view, the only ethically justifiable reason for collecting these sensitive attributes would be for purposes of investigating algorithmic bias. However, our literature review has shown this not to be the case in practice.
+              <br>
+              <br>
+              Concerning model selection, we would advise the use of logistic regression due to its interpretable characteristics and quick optimization procedure that can be harnessed without sacrificing much predictive power.
+              <br>
+              <br>
+              In our disparate impact analysis, we find no evidence of bias against subpopulations that share a certain age, gender or marital status, which are protected categories in the US. In terms of level of education, we find a difference in performance for people with high school degrees. This might be problematic due to the fact that lower educational attainment is known to correlate with lower income, and thus we might be denying people who are at low risk of defaulting the credit they might be needing more than higher income populations. However, bias need not be the reason for the inferior performance. Maybe the economic trajectories of people whose highest educational degree is high school are more random / have higher variability than those of people with higher educational degrees, making them harder to predict. More research and inquiry into the dataset is needed to address such questions.
+              <br>
+              <br>
+              Additionally, it is worth asking to what extent a US dataset would differ from the Taiwan one: would the same variables be the most important ones, would using sensitive attributes such as race make a bigger difference in accuracy, etc. Further research could focus on possible comparisons between models trained on different datasets.
+
           </p>
         </div>
       </div>
@@ -525,40 +654,42 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8 text-align-left">
-          <h2 class="text-black mt-0">Next Steps</h2>
           <p class="mb-4" style="line-height:2.3em;">
-            For the next steps in our project, we plan on focusing on two avenues of research.
+            Further possible avenues of research could be the following:
           </p>
           <h5 class="text-align-center">1. Feedback Loop Simulation</h5>
           <p class="mb-4" style="line-height:2.3em;">
-            A widely discussed issue in credit score assessment is the presence of feedback loops.
-            If you are an individual who is initially denied for a loan or credit card line, then you might face additional financial hardships,
-            such as not being able to purchase a home or car, or pay for unexpected costs.
-            This might, in turn, negatively impact your credit score, making it even less likely for you to get further loans.
-            This kind of feedback loops can also be seen in predictive policing, as described in a 2018 paper by Ensign et al. [4].
-            Employing a similar methodology, we would like to create simple simulations to model such feedback loops and potential interventions.
+            As mentioned above, a widely discussed issue in credit score assessment is the presence of feedback loops. If you are an individual who is initially denied for a loan or credit card line, then you might face additional financial hardships, such as not being able to purchase a home or car, or pay for unexpected costs. This might, in turn, negatively impact your credit score, making it even less likely for you to get further loans. This kind of feedback loops can also be seen in predictive policing, as described in a 2018 paper by Ensign et al. [10]. Employing a similar methodology, we would like to create simulations to prove the existence of such feedback loops, as well as possible interventions.
           </p>
           <h5 class="text-align-center">2. Categorizing practicioner's errors</h5>
           <p class="mb-4" style="line-height:2.3em;">
             As previously mentioned, many Kaggle users and papers have done work with this dataset. While investigating issues with unexplained categories (that we managed to get explanations for directly from the author of the original paper), we noticed several types of errors that were being made in the analysis, either in terms of the technical aspects of the models employed, or in the interpretation of the results. We aim to look at a larger number of these papers/notebook and create a classification for the most common type of errors, and discuss their implications.
           </p>
-
         </div>
       </div>
     </div>
   </section>
 
-  <section class="page-section" id="fairness">
+  <section class="page-section" id="references">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8 text-align-left">
           <h5 class="text-black mt-0">References</h2>
           <p class="mb-4" style="line-height:4em;">
             <ul style="list-style-type:none;line-height:2.2em;">
-              <li>[1] https://www.creditkarma.com/advice/i/learn-credit-score-factors/</li>
-              <li>[2] https://www.fiscaltiger.com/gender-affect-credit-scores/</li>
-              <li>[3] Yeh, I-Cheng, and Che-hui Lien. "The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients." Expert Systems with Applications 36.2 (2009): 2473-2480.</li>
-              <li>[4] http://proceedings.mlr.press/v81/ensign18a/ensign18a.pdf</li>
+              <li>Find our Github repository <a href="https://github.com/JanGeffert/AC221-FinalProject">here</a>.</li>
+              <li><br></li>
+              <li>[1] Federal Trade Commission. (n.d.) Your Equal Credit Opportunity Rights. Retrieved from https://www.consumer.ftc.gov/articles/0347-your-equal-credit-opportunity-rights.
+              </li><li>[2] Hurley, M., Adebayo, J. (2017). Credit Scoring in the Era of Big Data. Yale Journal of Law and Technology 18(1).
+              </li><li>[3] Mayer, C. (November 10, 2017). How Does Gender Affect Credit Scores? Fiscal Tiger. Retrieved from https://www.fiscaltiger.com/gender-affect-credit-scores/.
+              </li><li>[4] Yeh, I-C., Lien, C. (2009). The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients. Expert Systems with Applications 36(2): 2473-2480.
+              </li><li>[5] Ortiz, L.M. (July 25, 2016). Challenging the Almighty Credit Score. Shelterforce. Retrieved from https://shelterforce.org/2016/07/25/challenging-the-almighty-credit-score/.
+              </li><li>[6] Pritchard, J. (March 11, 2018). What is Credit? The Balance. Retrieved from https://www.thebalance.com/what-is-credit-315391.
+              </li><li>[7] Rice, L., Swesnik, D. (June, 2012). Discriminatory Effects of Credit Scoring on Communities of Color. National Fair Housing Alliance. Retrieved from https://nationalfairhousing.org/wp-content/uploads/2017/04/NFHA-credit-scoring-paper-for-Suffolk-NCLC-symposium-submitted-to-Suffolk-Law.pdf
+              </li><li>[8] Avery, R.B., Brevoort, K.P., Canner, G.B. Does Credit Scoring Produce a Disparate Impact? Federal Reserve. Retrieved from https://www.federalreserve.gov/pubs/feds/2010/201058/201058pap.pdf.
+              </li><li>[9] Keyes, Os. The Misgendering Machines: Trans/HCI Implications of Automatic Gender Recognition. Retrieved from https://ironholds.org/resources/papers/agr_paper.pdf.
+              </li><li>[10] Ensign, D., Friedler, S.A., Neville, S., Scheidegger, C., Venkatasubramanian, S. (2018). Runaway Feedback Loops in Predictive Policing. Proceedings of Machine LEarning Research 81: 1-12.
+              </li>
             </ul>
           </p>
         </div>
