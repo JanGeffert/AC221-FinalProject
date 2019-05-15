@@ -1,7 +1,7 @@
 # AC221-FinalProject
 
 ## How this repository is organized
-* `eda_miru.ipynb`: main notebook with data EDA & analysis
+* `analysis.ipynb`: main notebook with data EDA & analysis
 
 * `data` directory: all data used for analysis in our project
   * `age.csv`, `gender.csv`, `marital.csv`: demographic statistics on Taiwan population
